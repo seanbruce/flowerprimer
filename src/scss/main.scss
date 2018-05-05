@@ -1,6 +1,14 @@
 @import 'INIT';
+@import 'VARIABLES';
 
 .container {
-    width: 1190px;
+    width: 1199.98px;
     margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex: {
+        direction: row;
+    }
 }
