@@ -6,16 +6,23 @@
   src: url('../fonts/PingFangSC-Regular.woff2');
 }
 
-* {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 125%;
 }
 
 body {
     font: {
         family: myFonts;
     }
+    box-sizing: border-box;
 }
 
 

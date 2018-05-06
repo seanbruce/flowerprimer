@@ -7,9 +7,9 @@
                 </router-link>
             </div>
             <div class="items-right">
-                <router-link to="/cart"><img :src="icons.cart" class="cart"/></router-link>
-                <a><img :src="icons.notification" class="notification"/></a>
-                <router-link to="/loginsignin"><img :src="icons.account" class="account"/></router-link>
+                <router-link to="/cart"><div class="position"><img :src="icons.cart" class="cart"/></div></router-link>
+                <a><div class="position"><img :src="icons.notification" class="notification"/></div></a>
+                <router-link to="/loginsignin"><div class="position"><img :src="icons.account" class="account"/></div></router-link>
             </div>
         </div>
     </header>
@@ -33,33 +33,59 @@ export default {
 
 <style lang="scss" scoped>
     @import '../../scss/VARIABLES';
+
+    @keyframes moveUp {
+        0% {
+            
+        }
+        100% {
+            transform: translateY(-0.15rem);
+            box-shadow: 0 10px 10px rgba(0,0,0, .2);
+        }
+    }
+    
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     .header {
-        height: 112px;
+        height: 5.6rem;
         .header-container {
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 4rem;
             border: {
                 bottom: solid 1px lighten($color-primary, 80%);
             }
             .items-left {
                 img {
-                    width: 261px;
-                    height: 57px;
+                    width: 13.05rem;
+                    height: 2.85rem;
                 }
             }
             .items-right {
                 a {
+                    display: inline-block;
+                    position: relative;
+                    height: 1.4rem;
+                    margin: {
+                        right: 1.5rem;
+                    }
                     cursor: pointer;
-                    img {
-                        transition: all 250ms ease-out;
-                        height: 28px;
-                        margin: {
-                            right: 30px;
-                        }
-                        padding: 5px;
-                        &:hover {
-                            outline: solid 1px $color-primary;
+                    .position {
+                        position: relative;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        img {
+                            text-align: center;
+                            z-index: 10;
+                            height: 1.4rem;
+                            background-color: transparent;
                         }
                     }
                 }
