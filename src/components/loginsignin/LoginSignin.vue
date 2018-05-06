@@ -7,14 +7,30 @@
                 </router-link>
             </div>
         </header>
-        <div class="loginsignin__middle"></div>
+        <div class="loginsignin__middle row">
+            <div class="loginsignin__middle__center">
+                <router-view></router-view>
+            </div>
+        </div>
         <footer class="loginsignin__footer"></footer>
     </div>
 </template>
 
 <script>
+import Login from './Login.vue'
+import Signin from './signin/Signin.vue'
 export default {
-  
+    data() {
+        return {
+        }
+    },
+    components: {
+        appLogin: Login,
+        appSignin: Signin
+    },
+    created() {
+        console.log('LoginSignin created');
+    }
 }
 </script>
 
@@ -22,6 +38,7 @@ export default {
 <style lang="scss" scoped>
     @import '../../scss/VARIABLES';
     .loginsignin {
+        background-color: #d5d5d5;
         .loginsignin__header {
             background-color: $color-second;
             height: 4rem;
@@ -38,6 +55,10 @@ export default {
         }
         .loginsignin__middle {
             height: 40rem;
+            justify-content: center;
+            align-items: center;
+            .loginsignin__middle__center {
+            }
         }
         .loginsignin__footer {
             background: $color-second;

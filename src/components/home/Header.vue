@@ -9,7 +9,7 @@
             <div class="header__container__items--right">
                 <router-link to="/cart"><div class="position"><img :src="icons.cart" class="cart"/></div></router-link>
                 <a><div class="position"><img :src="icons.notification" class="notification"/></div></a>
-                <router-link to="/loginsignin"><div class="position"><img :src="icons.account" class="account"/></div></router-link>
+                <router-link to="/loginsignin/login"><div class="position"><img :src="icons.account" class="account"/></div></router-link>
             </div>
         </div>
     </header>

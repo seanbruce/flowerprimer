@@ -12,3 +12,9 @@
         direction: row;
     }
 }
+
+.row-center {
+    @extend .row;
+    justify-content: center;
+    align-items: center;
+}

@@ -4,7 +4,9 @@
 
 <script>
 export default {
-  
+    created() {
+        console.log('advertisement created')
+    }
 }
 </script>
 
@@ -15,6 +17,7 @@ export default {
         height: 25.4rem;
         background: url('../../assets/images/advertisement-img.jpg') 0 -290px;
         background-size: cover;
+        background-repeat: no-repeat;
     }
 </style>
 
