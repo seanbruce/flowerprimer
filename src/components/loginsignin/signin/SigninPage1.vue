@@ -15,15 +15,15 @@
         </div>
         <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--email">
           <p><span>邮箱</span></p>
-          <input type="text">
+          <input type="email">
         </div>
         <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--password">
           <p><span>密码</span></p>
-          <input type="text">
+          <input type="password">
         </div>
         <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--confirmPassword">
           <p><span>确认密码</span></p>
-          <input type="text">
+          <input type="password">
         </div>
       </div>
       <div class="page1__formContent__rightPart">
@@ -102,6 +102,30 @@ export default {
         width: 25.375rem;
         height: 17.65rem;
         border-right: solid 1px rgba($color-primary, .5);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        .page1__formContent__leftPart__group {
+          margin-top: 0.5rem;
+          &.page1__formContent__leftPart__group--email {
+            input {
+              letter-spacing: 0.2rem;
+            }
+          }
+          &.page1__formContent__leftPart__group--name {
+            margin-top: 0;
+          }
+        }
+      }
+      .page1__formContent__rightPart {
+      }
+      &::after, &::before {
+        content: '';
+        display: table;
+      }
+      &::after {
+        clear: both;
       }
     }
 
@@ -109,5 +133,34 @@ export default {
       width: 18rem;
       height: 2.5rem;
       border-radius: 0.25rem;
+      letter-spacing: 0.5rem;
+      padding: {
+        left: 1rem;
+        right: 1rem;
+      }
+      font: {
+        size: 1rem;
+      }
+      border: solid 0.1rem lighten($color-primary, 60%);
+      &:focus {
+          border-color: $color-primary;
+      }
+    }
+    button {
+        cursor: pointer;
+        display: block;
+        width: 7.4rem;
+        height: 2.4rem;
+        border: solid 0.1rem $color-primary;
+        border-radius: 1.2rem;
+        background-color: #fff;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: $color-primary;
+        transition: all 200ms ease-out;
+        &:hover {
+            color: #FFF;
+            background-color: $color-primary;
+        }
     }
 </style>

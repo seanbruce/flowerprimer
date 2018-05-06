@@ -38,9 +38,11 @@ export default {
         0% {
             
         }
+        80% {
+            transform: translateY(-0.25rem);
+        }
         100% {
-            transform: translateY(-0.15rem);
-            box-shadow: 0 10px 10px rgba(0,0,0, .2);
+            transform: translateY(0rem);
         }
     }
     
@@ -78,13 +80,27 @@ export default {
                     cursor: pointer;
                     .position {
                         position: relative;
-                        width: 1.5rem;
-                        height: 1.5rem;
+                        width: 1.6rem;
+                        height: 1.6rem;
                         img {
+                            margin: 0 auto;
+                            display: block;
                             text-align: center;
                             z-index: 10;
                             height: 1.4rem;
                             background-color: transparent;
+                        }
+                        &:hover {
+                            animation-name: moveUp;
+                            animation-duration: 500ms;
+                            animation-timing-function: ease-out;
+                            animation-iteration-count:infinite;
+                        }
+                    }
+                    &:first-child {
+                        .position {
+                            &::after {
+                            }
                         }
                     }
                 }

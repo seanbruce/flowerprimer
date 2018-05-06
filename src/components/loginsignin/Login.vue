@@ -80,11 +80,17 @@ export default {
                         border-color: $color-primary;
                     }
                 }
-            }
-            .login__top__email {
-            }
-            .login__top__group--password {
-                margin-top: 1.75rem;
+                &.login__top__group--email {
+                    input {
+                        letter-spacing: 0.2rem;
+                    }
+                }
+                &.login__top__group--password {
+                    margin-top: 1.75rem;
+                    input {
+                        letter-spacing: 0.5rem;
+                    }
+                }
             }
             button {
                 margin: 1.9rem auto 1.025rem auto;
