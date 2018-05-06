@@ -1,12 +1,12 @@
 <template>
-    <header class="header container">
-        <div class="row header-container">
-            <div class="items-left">
+    <header class="header">
+        <div class="row header__container">
+            <div class="header__container__items--left">
                 <router-link to='/'>
                     <img src="../../assets/icons/logo.png" alt="">
                 </router-link>
             </div>
-            <div class="items-right">
+            <div class="header__container__items--right">
                 <router-link to="/cart"><div class="position"><img :src="icons.cart" class="cart"/></div></router-link>
                 <a><div class="position"><img :src="icons.notification" class="notification"/></div></a>
                 <router-link to="/loginsignin"><div class="position"><img :src="icons.account" class="account"/></div></router-link>
@@ -55,23 +55,22 @@ export default {
 
     .header {
         height: 5.6rem;
-        .header-container {
+        .header__container {
             justify-content: space-between;
             align-items: center;
             height: 4rem;
             border: {
                 bottom: solid 1px lighten($color-primary, 80%);
             }
-            .items-left {
+            .header__container__items--left {
                 img {
                     width: 13.05rem;
                     height: 2.85rem;
                 }
             }
-            .items-right {
+            .header__container__items--right {
                 a {
                     display: inline-block;
-                    position: relative;
                     height: 1.4rem;
                     margin: {
                         right: 1.5rem;

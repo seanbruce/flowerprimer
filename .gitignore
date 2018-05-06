@@ -61,3 +61,5 @@ typings/
 *.png
 *.png
 src/assets/logo.png
+*.jpg
+*.svg
