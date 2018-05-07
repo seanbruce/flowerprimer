@@ -15,7 +15,7 @@ export default {
     .advertisement {
         width: 100%;
         height: 25.4rem;
-        background: url('../../assets/images/advertisement-img.jpg') 0 -290px;
+        background: url('../../assets/images/advertisement2.jpeg') 0 -300px;
         background-size: cover;
         background-repeat: no-repeat;
     }

@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="page1__formContent__rightPart">
-        <button></button>
+        <button @click="next">下一步</button>
       </div>
     </div>
   </div>
@@ -37,6 +37,11 @@
 <script>
 export default {
   props: ['user'],
+  methods: {
+    next() {
+      this.$emit('changePage', 'appSigninPage2')
+    }
+  }
 }
 </script>
 
@@ -95,6 +100,7 @@ export default {
       }
     }
     .page1__formContent {
+      display: flex;
       height: 19.675rem;
       width: 37.6rem;
       margin: 0 auto;
@@ -119,6 +125,10 @@ export default {
         }
       }
       .page1__formContent__rightPart {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
       }
       &::after, &::before {
         content: '';
@@ -147,12 +157,13 @@ export default {
       }
     }
     button {
+        transform: translateY(-50%);
         cursor: pointer;
         display: block;
         width: 7.4rem;
         height: 2.4rem;
-        border: solid 0.1rem $color-primary;
-        border-radius: 1.2rem;
+        border: solid 0.1rem $color-second;
+        border-radius: 0.2rem;
         background-color: #fff;
         font-size: 0.8rem;
         font-weight: bold;
@@ -160,7 +171,7 @@ export default {
         transition: all 200ms ease-out;
         &:hover {
             color: #FFF;
-            background-color: $color-primary;
+            background-color: $color-second;
         }
     }
 </style>

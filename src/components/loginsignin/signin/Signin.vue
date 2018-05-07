@@ -1,6 +1,6 @@
 <template>
     <div class="signin">
-        <component :is="activePage" :user="user"></component>
+        <component :is="activePage" :user="user" @changePage="changeActivePage"></component>
     </div>
 </template>
 
@@ -9,6 +9,8 @@
 
 <script>
 import SigninPage1 from './SigninPage1.vue'
+import SigninPage2 from './SigninPage2.vue'
+import SigninPage3 from './SigninPage3.vue'
 export default {
     data() {
         return {
@@ -21,7 +23,14 @@ export default {
         }
     },
     components: {
-        appSigninPage1: SigninPage1
+        appSigninPage1: SigninPage1,
+        appSigninPage2: SigninPage2,
+        appSigninPage3: SigninPage3,
+    },
+    methods: {
+        changeActivePage(page) {
+            this.activePage = page
+        }
     }
 }
 </script>
