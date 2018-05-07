@@ -1,7 +1,6 @@
 <template>
     <div class="login">
         <div class="login__top">
-            email: {{loginInfo.email}} password: {{loginInfo.password}}
             <div class="login__top__group login__top__group--email">
                 <p><span>邮箱</span></p>
                 <input type="email" v-model="loginInfo.email" placeholder="example@email.com">

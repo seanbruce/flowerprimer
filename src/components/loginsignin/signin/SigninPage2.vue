@@ -33,6 +33,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      errors: [],
+      
+    }
+  },
   methods: {
     next() {
       this.$emit('changePage', 'appSigninPage3')
