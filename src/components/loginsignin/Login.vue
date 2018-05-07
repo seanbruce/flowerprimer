@@ -1,19 +1,26 @@
 <template>
     <div class="login">
         <div class="login__top">
+            email: {{loginInfo.email}} password: {{loginInfo.password}}
             <div class="login__top__group login__top__group--email">
                 <p><span>邮箱</span></p>
-                <input type="email"  placeholder="example@email.com">
+                <input type="email" v-model="loginInfo.email" placeholder="example@email.com">
             </div>
             <div class="login__top__group login__top__group--password">
                 <p><span>密码</span></p>
-                <input type="password" name="" id="">
+                <input type="password" v-model="loginInfo.password" name="" id="">
             </div>
-            <button>登陆</button>
+            <button @click.prevent="login">登陆</button>
+            <p class="warning" v-if="formErrors.length">
+                <span>您输入的信息有误</span>
+                <ul>
+                    <li v-for="(error, index) of formErrors" :key="index" >{{ error}}</li>
+                </ul>
+            </p>
         </div>
         <div class="login__bottom">
             <span class="prompt">还没有账号？注册一下</span>
-            <button @click="navigateToSignin">注册</button>
+            <button @click.prevent="navigateToSignin">注册</button>
         </div>
     </div>
 </template>
@@ -21,14 +28,46 @@
 
 <script>
 export default {
-  methods: {
-      navigateToSignin() {
-          this.$router.push('/loginsignin/signin');
-      }
-  },
-  created() {
-      console.log('Login created')
-  }
+    data() {
+        return {
+            loginInfo: {
+                email: null,
+                password: null,
+            },
+            formErrors: [],
+        }
+    },
+    methods: {
+        login() {
+            if(this.checkForm()) { 
+            } else {
+            }
+        },
+        navigateToSignin() {
+            this.$router.push('/loginsignin/signin');
+        },
+        checkForm() {
+            this.formErrors = []
+            if(!this.loginInfo.email) {
+                this.formErrors.push('请输入账号')
+            } else if(!this.validEmail(this.loginInfo.email)) {
+                this.formErrors.push('账号必须是邮箱地址的形式')
+            }
+            if(!this.loginInfo.password) this.formErrors.push('密码不能为空')
+            if(!this.formErrors.length) {
+                return true
+            } else {
+                return false
+            }
+        },
+        validEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        }
+    },
+    created() {
+        console.log('Login created')
+    }
 }
 </script>
 
@@ -41,6 +80,7 @@ export default {
         width: 38.5rem;
         height: 25.15rem;
         .login__top {
+            position: relative;
             margin: 0 auto;
             width: 30.35rem;
             height: 17.475rem;
@@ -94,6 +134,32 @@ export default {
             }
             button {
                 margin: 1.9rem auto 1.025rem auto;
+            }
+            .warning {
+                position: absolute;
+                top: 3.5rem;
+                right: -3rem;
+                border: solid 0.05rem $color-second;
+                border-radius: 0.4rem;
+                padding: 0.2rem;
+                span {
+                    color: $color-second;
+                    border-bottom: solid 0.05rem $color-second;
+                    padding-bottom: 0.5rem;
+                    font: {
+                        weight: bold;
+                    }
+                }
+                ul {
+                    padding: 0.5rem 0;
+                    li {
+                        font: {
+                            size: 0.7rem;
+                        }
+                        color: #B4B4B4;
+                        text-align: center;
+                    }
+                }
             }
         }
         .login__bottom {

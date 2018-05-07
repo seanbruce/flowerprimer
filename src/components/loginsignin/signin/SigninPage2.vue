@@ -17,10 +17,10 @@
         </dvi>
         <div class="page2__content__group--authCode">
           <span>验证码：</span>
-          <input type="number" name="" id="">
-          <input type="number" name="" id="">
-          <input type="number" name="" id="">
-          <input type="number" name="" id="">
+          <input ref="auth1" type="number" name="" id="">
+          <input ref="auth2" type="number" name="" id="">
+          <input ref="auth3" type="number" name="" id="">
+          <input ref="auth4" type="number" name="" id="">
         </div>
         <div class="page2__content__group--bottom">
           <button @click="next">提交</button>

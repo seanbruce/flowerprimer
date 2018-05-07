@@ -7,41 +7,83 @@
         <span class="dot step3"></span>
       </div>
     </div>
-    <div class="page1__formContent">
-      <div class="page1__formContent__leftPart">
-        <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--name">
-          <p><span>姓名</span></p>
-          <input type="text">
+      <div class="page1__formContent">
+        <div class="page1__formContent__leftPart">
+          <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--name">
+            <p><span>姓名</span></p>
+            <input v-model="registerInfo.userName" type="text">
+          </div>
+          <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--email">
+            <p><span>邮箱</span></p>
+            <input v-model="registerInfo.userEmail" type="email">
+          </div>
+          <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--password">
+            <p><span>密码</span></p>
+            <input v-model="registerInfo.userPassword" type="password">
+          </div>
+          <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--confirmPassword">
+            <p><span>确认密码</span></p>
+            <input v-model="registerInfo.userConfirmPassword" type="password">
+          </div>
         </div>
-        <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--email">
-          <p><span>邮箱</span></p>
-          <input type="email">
-        </div>
-        <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--password">
-          <p><span>密码</span></p>
-          <input type="password">
-        </div>
-        <div class="page1__formContent__leftPart__group page1__formContent__leftPart__group--confirmPassword">
-          <p><span>确认密码</span></p>
-          <input type="password">
+        <div class="page1__formContent__rightPart">
+            <p class="warning" v-if="errors.length">
+                <span>您输入的信息有误</span>
+                <ul>
+                    <li v-for="(error, index) of errors" :key="index" >{{ error}}</li>
+                </ul>
+            </p>
+          <button @click="next">下一步</button>
         </div>
       </div>
-      <div class="page1__formContent__rightPart">
-        <button @click="next">下一步</button>
-      </div>
-    </div>
   </div>
 </template>
 
 
 <script>
 export default {
+  data() {
+    return {
+        registerInfo: {
+          userName: null,
+          userEmail: null,
+          userPassword: null,
+          userConfirmPassword: null,
+        },
+        errors: [],
+    }
+  },
   props: ['user'],
   methods: {
     next() {
-      this.$emit('changePage', 'appSigninPage2')
+      if(this.validate()) this.$emit('changePage', 'appSigninPage2')
+    },
+    validate() {
+        this.errors = [];
+        if(!this.registerInfo.userName) this.errors.push('用户名不能为空');
+        if(!this.registerInfo.userEmail) {
+          this.errors.push('邮箱不能为空')
+        } else if(!this.validateEmail(this.registerInfo.userEmail)) {
+          this.errors.push('邮箱的格式不正确')
+        }
+        if(!this.registerInfo.userPassword) {
+          this.errors.push('密码不能为空')
+        } else if(!this.validatePassword(this.registerInfo.userPassword)) {
+          this.errors.push('密码不符合规范')
+        } else if(this.registerInfo.userConfirmPassword !== this.registerInfo.userConfirmPassword) {
+          this.errors.push('两次输入的密码不一致')
+        }
+        if(!this.errors.length) return true
+    },
+    validateEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(email)
+    },
+    validatePassword(password) {
+      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/
+      return re.test(password)
     }
-  }
+  },
 }
 </script>
 
@@ -125,10 +167,36 @@ export default {
         }
       }
       .page1__formContent__rightPart {
+        position: relative;
         flex-grow: 1;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        .warning {
+          position: absolute;
+          border: solid 0.05rem $color-second;
+          border-radius: 0.4rem;
+          padding: 0.2rem;
+          top: 0;
+          span {
+              color: $color-second;
+              border-bottom: solid 0.05rem $color-second;
+              padding-bottom: 0.5rem;
+              font: {
+                  weight: bold;
+              }
+          }
+          ul {
+              padding: 0.5rem 0;
+              li {
+                  font: {
+                      size: 0.7rem;
+                  }
+                  color: #B4B4B4;
+                  text-align: center;
+              }
+          }
+        }
       }
       &::after, &::before {
         content: '';
