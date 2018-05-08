@@ -1,6 +1,12 @@
 <template>
     <div class="signin">
-        <component :is="activePage" :user="user" @changePage="changeActivePage"></component>
+        <transition 
+            name="component-fade" 
+            mode="out-in"
+            enter-active-class="animated fadeIn"
+            leave-active-class="animated fadeOut">
+            <component :is="activePage" :user="user" @changePage="changeActivePage"></component>
+        </transition>
     </div>
 </template>
 

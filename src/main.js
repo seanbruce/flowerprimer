@@ -3,6 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import {routes} from './routes'
 import './scss/main.scss'
+import './css/animate.css'
 
 Vue.use(VueRouter)
 

@@ -3,19 +3,24 @@
         <div class="login__top">
             <div class="login__top__group login__top__group--email">
                 <p><span>邮箱</span></p>
-                <input type="email" v-model="loginInfo.email" placeholder="example@email.com">
+                <input @input="formErrors.length=0" type="email" v-model="loginInfo.email" placeholder="example@email.com">
             </div>
             <div class="login__top__group login__top__group--password">
                 <p><span>密码</span></p>
                 <input type="password" v-model="loginInfo.password" name="" id="">
             </div>
             <button @click.prevent="login">登陆</button>
-            <p class="warning" v-if="formErrors.length">
-                <span>您输入的信息有误</span>
-                <ul>
-                    <li v-for="(error, index) of formErrors" :key="index" >{{ error}}</li>
-                </ul>
-            </p>
+            <transition 
+                name="test"
+                enter-active-class="animated fadeInRight"
+                leave-active-class="animated fadeOutRight">
+                <p class="warning" v-if="formErrors.length">
+                    <span>您输入的信息有误</span>
+                    <ul>
+                        <li v-for="(error, index) of formErrors" :key="index" >{{ error}}</li>
+                    </ul>
+                </p>
+            </transition>
         </div>
         <div class="login__bottom">
             <span class="prompt">还没有账号？注册一下</span>
@@ -73,6 +78,11 @@ export default {
 
 <style lang="scss" scoped>
     @import '../../scss/VARIABLES';
+
+
+
+
+
     .login {
         border: solid 1px #EEE;
         background-color: #fff;
@@ -197,6 +207,7 @@ export default {
             background-color: $color-primary;
         }
     }
+
 </style>
 
 

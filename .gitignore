@@ -64,3 +64,4 @@ src/assets/logo.png
 *.jpg
 *.svg
 *.jpeg
+src/css/animate.css

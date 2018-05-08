@@ -91,10 +91,8 @@ export default {
                             background-color: transparent;
                         }
                         &:hover {
-                            animation-name: moveUp;
-                            animation-duration: 500ms;
-                            animation-timing-function: ease-out;
-                            animation-iteration-count:infinite;
+                            animation-name: pulse;
+                            animation-duration: 1000ms;
                         }
                     }
                     &:first-child {
